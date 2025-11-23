@@ -1,0 +1,37 @@
+{
+  "name": "@vibenv/env-manager",
+  "version": "1.0.0",
+  "description": "Interactive environment variable manager for vibenv packages",
+  "main": "envManager.js",
+  "bin": {
+    "env-manager": "./dist/envManager.js"
+  },
+  "type": "module",
+  "engines": {
+    "node": "^20.19.0 || >=22.12.0"
+  },
+  "files": [
+    "dist/envManager.js"
+  ],
+  "scripts": {
+    "build": "tsc -b && npm run postbuild",
+    "postbuild": "(head -n1 dist/envManager.js | grep -q '#!/usr/bin/env node') || (echo '#!/usr/bin/env node' | cat - dist/envManager.js > temp.js && mv temp.js dist/envManager.js) && chmod +x dist/envManager.js",
+    "dev": "tsx envManager.ts",
+    "clean": "rm -rf envManager.js"
+  },
+  "keywords": [
+    "environment",
+    "env",
+    "config",
+    "cli",
+    "interactive",
+    "vibenv"
+  ],
+  "author": "Martin Velinsky <martin@elinsky.name>",
+  "license": "vibenv - Proprietary Software",
+  "dependencies": {
+    "enquirer": "^2.4.1"
+  },
+  "devDependencies": {
+  }
+}
